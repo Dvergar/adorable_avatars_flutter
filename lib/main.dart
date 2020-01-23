@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:transparent_image/transparent_image.dart';
 import 'avatar_bloc.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -29,6 +28,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  double size = 285;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,17 +41,32 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             StreamBuilder(
-              stream: avatarBloc.stream ,
-              initialData: 'https://api.adorable.io/avatars/123/abott@adorable.png',
-              builder: (BuildContext context, AsyncSnapshot snapshot){
+              stream: avatarBloc.stream,
+              initialData:
+                  'https://api.adorable.io/avatars/123/abott@adorable.png',
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
                 if (!snapshot.hasData) return Text("nope");
-                return Image.network('https://api.adorable.io/avatars/123/abott@adorable.png');
+                return FadeInImage.memoryNetwork(
+                  height: 300,
+                  width: 300,
+                  placeholder: kTransparentImage,
+                  image: snapshot.data,
+                );
+                // return Image.network(
+                //     snapshot.data);
               },
             ),
+            Slider(
+              value: size,
+              max: 300,
+              onChanged: (newSize) {
+                avatarBloc.updateSize(newSize.round());
+                setState(() => size = newSize);
+              },
+            )
           ],
         ),
       ),
-// This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
