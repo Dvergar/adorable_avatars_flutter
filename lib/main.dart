@@ -52,16 +52,18 @@ class _MyHomePageState extends State<MyHomePage> {
                   placeholder: kTransparentImage,
                   image: snapshot.data,
                 );
-                // return Image.network(
-                //     snapshot.data);
               },
             ),
             Slider(
               value: size,
               max: 300,
-              onChanged: (newSize) {
+              onChanged: (newSize)
+              {
+setState(() => size = newSize);
+              },
+              onChangeEnd: (newSize) {
                 avatarBloc.updateSize(newSize.round());
-                setState(() => size = newSize);
+                
               },
             )
           ],
