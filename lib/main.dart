@@ -29,6 +29,13 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   double size = 285;
+  TextEditingController identifierController;
+
+ @override
+  void initState() {
+    super.initState();
+    identifierController = new TextEditingController(text: 'Initial value');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,16 +61,22 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               },
             ),
+            TextField(
+              controller: identifierController,
+              style: TextStyle(color: Colors.red),
+              decoration: InputDecoration(hintText: "enter text"),
+              onChanged: (newIdentifier) {
+                avatarBloc.updateIdentifier(newIdentifier);
+              },
+            ),
             Slider(
               value: size,
               max: 300,
-              onChanged: (newSize)
-              {
-setState(() => size = newSize);
+              onChanged: (newSize) {
+                setState(() => size = newSize);
               },
               onChangeEnd: (newSize) {
                 avatarBloc.updateSize(newSize.round());
-                
               },
             )
           ],
