@@ -3,6 +3,7 @@ import 'dart:async';
 class AvatarBloc {
   int size = 285;
   String identifier = "abott@adorable.io";
+  String url = "";
 
   final urlController =
       StreamController.broadcast(); // create a StreamController
@@ -10,8 +11,9 @@ class AvatarBloc {
   Stream get stream => urlController.stream; // create a getter for our stream
 
   void updateUrl() {
+    this.url = 'https://api.adorable.io/avatars/$size/$identifier.png';
     urlController.sink
-        .add('https://api.adorable.io/avatars/$size/$identifier.png');
+        .add(url);
   }
 
   void updateSize(int newSize) {

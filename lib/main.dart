@@ -1,6 +1,7 @@
 import 'package:adorable_avatars_flutter/adorable_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:image_downloader/image_downloader.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'avatar_bloc.dart';
 
@@ -177,7 +178,18 @@ class _MyHomePageState extends State<MyHomePage> {
                   style: TextStyle(fontSize: 18),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () async {
+                try {
+                  // Saved with this method.
+                  var imageId = await ImageDownloader.downloadImage(
+                      avatarBloc.url);
+                  if (imageId == null) {
+                    return;
+                  }
+                } on PlatformException catch (error) {
+                  print(error);
+                }
+              },
             )
           ],
         ),
