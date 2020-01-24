@@ -151,12 +151,16 @@ class _MyHomePageState extends State<MyHomePage> {
                       // height: double.infinity,
                       child: Material(
                         color: Color(0xff6ED8D6),
-                        child: IconButton(
-                          icon: Icon(Icons.content_copy),
-                          tooltip: 'Copy to clipboard',
-                          onPressed: () {
-                            Clipboard.setData(new ClipboardData(text: "coucou"));
-                          },
+                        child: Builder(
+                        builder: (context) =>
+                                                   IconButton(
+                            icon: Icon(Icons.content_copy),
+                            tooltip: 'Copy to clipboard',
+                            onPressed: () {
+                              Clipboard.setData(new ClipboardData(text: "coucou"));
+                              Scaffold.of(context).showSnackBar(SnackBar(content: new Text("Link copied to clipboard"))); 
+                            },
+                          ),
                         ),
                       ),
                     ),
