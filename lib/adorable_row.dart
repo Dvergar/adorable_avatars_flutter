@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 class AdorableRow extends StatefulWidget {
   final Widget child;
   final String title;
+  final String title2;
 
-  AdorableRow({Key key, @required this.child, @required this.title})
+  AdorableRow({Key key, @required this.child, @required this.title, this.title2})
       : super(key: key);
 
   @override
@@ -34,12 +35,26 @@ class _AdorableRowState extends State<AdorableRow> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(
-                    widget.title,
-                    style: TextStyle(
-                        color: Color(0xff8A97A3),
-                        fontSize: 15,
-                        fontFamily: "Proxima"),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: <Widget>[
+                      Text(
+                        widget.title,
+                        style: TextStyle(
+                            color: Color(0xff8A97A3),
+                            fontSize: 15,
+                            fontFamily: "Proxima"),
+                      ),
+                      widget.title2 == null ? Container() :
+                      Text(
+                        ' ${widget.title2} px',
+                        style: TextStyle(
+                          height: 0.7,
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontFamily: "Proxima"),
+                      ),
+                    ],
                   ),
                   Expanded(child: widget.child)
                 ],

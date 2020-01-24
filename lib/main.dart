@@ -30,7 +30,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  double size = 285;
+  int size = 285;
   TextEditingController identifierController;
 
   @override
@@ -89,7 +89,8 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             AdorableRow(
-              title: "SIZE",
+              title: 'SIZE',
+              title2: size.toString(),
               child: SliderTheme(
                 data: SliderTheme.of(context).copyWith(
                   activeTrackColor: Color(0xff667382),
@@ -100,10 +101,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   trackShape: CustomTrackShape(),
                 ),
                 child: Slider(
-                  value: size,
+                  value: size.toDouble(),
                   max: 300,
                   onChanged: (newSize) {
-                    setState(() => size = newSize);
+                    setState(() => size = newSize.round());
                   },
                   onChangeEnd: (newSize) {
                     avatarBloc.updateSize(newSize.round());
