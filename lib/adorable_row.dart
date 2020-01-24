@@ -5,7 +5,8 @@ class AdorableRow extends StatefulWidget {
   final String title;
   final String title2;
 
-  AdorableRow({Key key, @required this.child, @required this.title, this.title2})
+  AdorableRow(
+      {Key key, @required this.child, @required this.title, this.title2})
       : super(key: key);
 
   @override
@@ -45,15 +46,16 @@ class _AdorableRowState extends State<AdorableRow> {
                             fontSize: 15,
                             fontFamily: "Proxima"),
                       ),
-                      widget.title2 == null ? Container() :
-                      Text(
-                        ' ${widget.title2} px',
-                        style: TextStyle(
-                          height: 0.7,
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontFamily: "Proxima"),
-                      ),
+                      widget.title2 == null
+                          ? Container()
+                          : Text(
+                              ' ${widget.title2} px',
+                              style: TextStyle(
+                                  height: 0.7,
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontFamily: "Proxima"),
+                            ),
                     ],
                   ),
                   Expanded(child: widget.child)

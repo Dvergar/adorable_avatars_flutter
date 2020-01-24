@@ -78,10 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: TextField(
                 controller: identifierController,
                 style: TextStyle(
-                  color: Colors.white,
-                  fontFamily: "Arial",
-                  fontSize: 18
-                ),
+                    color: Colors.white, fontFamily: "Arial", fontSize: 18),
                 decoration: InputDecoration.collapsed(hintText: "enter text"),
                 onChanged: (newIdentifier) {
                   avatarBloc.updateIdentifier(newIdentifier);

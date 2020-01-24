@@ -9,8 +9,6 @@ class AvatarBloc {
 
   Stream get stream => urlController.stream; // create a getter for our stream
 
-
-
   void updateUrl() {
     urlController.sink
         .add('https://api.adorable.io/avatars/$size/$identifier.png');
