@@ -117,8 +117,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   Flexible(
                     flex: 8,
                     child: Container(
-                      // height:MediaQuery.of(context).size.height,
-                      // height: 200,
                       padding: EdgeInsets.all(12),
                       color: Colors.white,
                       child: StreamBuilder(
@@ -146,9 +144,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   Flexible(
                     flex: 1,
                     child: Container(
-                      // constraints: BoxConstraints.expand(),
-                      // color:Colors.green,
-                      // height: double.infinity,
                       child: Material(
                         color: Color(0xff6ED8D6),
                         child: Builder(
@@ -164,22 +159,6 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                     ),
-                    // Material(
-                    //   color: Colors.white,
-                    //   child: Center(
-                    //     child: Ink(
-                    //       decoration: const ShapeDecoration(
-                    //         color: Colors.lightBlue,
-                    //         shape: CircleBorder(),
-                    //       ),
-                    //       child: IconButton(
-                    //         icon: Icon(Icons.android),
-                    //         color: Colors.white,
-                    //         onPressed: () {},
-                    //       ),
-                    //     ),
-                    //   ),
-                    // )
                   ),
                 ],
               ),
