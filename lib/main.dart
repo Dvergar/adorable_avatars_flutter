@@ -109,27 +109,76 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             SizedBox(height: 20),
-            Container(
-              padding: EdgeInsets.all(12),
-              color: Colors.white,
-              child: StreamBuilder(
-                stream: avatarBloc.stream,
-                initialData: "ok",
-                builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  if (!snapshot.hasData) return Text("Loading");
-                  return SelectableText.rich(TextSpan(
-                      style: TextStyle(fontFamily: 'Source Code Pro'),
-                      children: [
-                        TextSpan(text: 'https://api.adorable.io/avatars/'),
-                        TextSpan(
-                            text: avatarBloc.size.toString(),
-                            style: TextStyle(color: Color(0xffe14283))),
-                        TextSpan(text: '/'),
-                        TextSpan(
-                            text: avatarBloc.identifier,
-                            style: TextStyle(color: Color(0xffe14283)))
-                      ]));
-                },
+            IntrinsicHeight(
+                          child: Row(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Flexible(
+                    flex: 8,
+                    child: Container(
+                      // height:MediaQuery.of(context).size.height,
+                      // height: 200,
+                      padding: EdgeInsets.all(12),
+                      color: Colors.white,
+                      child: StreamBuilder(
+                        stream: avatarBloc.stream,
+                        initialData: "ok",
+                        builder: (BuildContext context, AsyncSnapshot snapshot) {
+                          if (!snapshot.hasData) return Text("Loading");
+                          return SelectableText.rich(TextSpan(
+                              style: TextStyle(fontFamily: 'Source Code Pro'),
+                              children: [
+                                TextSpan(
+                                    text: 'https://api.adorable.io/avatars/'),
+                                TextSpan(
+                                    text: avatarBloc.size.toString(),
+                                    style: TextStyle(color: Color(0xffe14283))),
+                                TextSpan(text: '/'),
+                                TextSpan(
+                                    text: avatarBloc.identifier,
+                                    style: TextStyle(color: Color(0xffe14283)))
+                              ]));
+                        },
+                      ),
+                    ),
+                  ),
+                  Flexible(
+                    flex: 1,
+                    child: Container(
+                      // constraints: BoxConstraints.expand(),
+                      // color:Colors.green,
+                      // height: double.infinity,
+                      child: Material(
+                        color: Color(0xff6ED8D6),
+                        child: IconButton(
+                          icon: Icon(Icons.content_copy),
+                          tooltip: 'Copy to clipboard',
+                          onPressed: () {
+                            setState(() {
+                              // _volume += 10;
+                            });
+                          },
+                        ),
+                      ),
+                    ),
+                    // Material(
+                    //   color: Colors.white,
+                    //   child: Center(
+                    //     child: Ink(
+                    //       decoration: const ShapeDecoration(
+                    //         color: Colors.lightBlue,
+                    //         shape: CircleBorder(),
+                    //       ),
+                    //       child: IconButton(
+                    //         icon: Icon(Icons.android),
+                    //         color: Colors.white,
+                    //         onPressed: () {},
+                    //       ),
+                    //     ),
+                    //   ),
+                    // )
+                  ),
+                ],
               ),
             )
           ],
