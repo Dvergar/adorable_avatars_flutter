@@ -84,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 data: SliderTheme.of(context).copyWith(
                   activeTrackColor: Color(0xff667382),
                   inactiveTrackColor: Color(0xff667382),
-                  trackHeight: 7.0,
+                  trackHeight: 6.3,
                   thumbColor: Colors.white,
                   thumbShape: RoundSliderThumbShape(enabledThumbRadius: 12.0),
                   trackShape: CustomTrackShape(),
