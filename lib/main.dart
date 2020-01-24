@@ -43,6 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: true,
       appBar: AppBar(
         title: Text(widget.title),
       ),
@@ -54,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
         padding: const EdgeInsets.symmetric(horizontal:15.0),
-        child: Column(
+        child: ListView(
           // mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             StreamBuilder(
