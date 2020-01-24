@@ -107,6 +107,32 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                 ),
               ),
+            ),
+            SizedBox(height: 20),
+            Container(
+              padding: EdgeInsets.all(8),
+              color: Colors.white,
+              child: StreamBuilder(
+                stream: avatarBloc.stream,
+                initialData: "ok",
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  if (!snapshot.hasData) return Text("Loading");
+                  return SelectableText.rich(
+                    
+                    TextSpan(
+                      style: TextStyle(fontFamily: 'Source Code Pro'),
+                      children: [
+                    TextSpan(text: 'https://api.adorable.io/avatars/'),
+                    TextSpan(
+                        text: avatarBloc.size.toString(),
+                        style: TextStyle(color: Color(0xffe14283))),
+                    TextSpan(text: '/'),
+                    TextSpan(
+                        text: avatarBloc.identifier,
+                        style: TextStyle(color: Color(0xffe14283)))
+                  ]));
+                },
+              ),
             )
           ],
         ),

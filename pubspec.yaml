@@ -76,6 +76,9 @@ flutter:
     - family : Proxima
       fonts:
         - asset: fonts/ProximaNova-Regular.otf
+    - family : Source Code Pro
+      fonts:
+        - asset: fonts/SourceCodePro-Regular.ttf
 
   assets:
     - images/demo-bg.jpg
