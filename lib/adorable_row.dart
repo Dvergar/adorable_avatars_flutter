@@ -26,7 +26,7 @@ class _AdorableRowState extends State<AdorableRow> {
         children: <Widget>[
           Container(
             color: Color(0xffE14283),
-            width: 10,
+            width: 6,
           ),
           Expanded(
             child: Padding(

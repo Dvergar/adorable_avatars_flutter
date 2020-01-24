@@ -80,6 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: TextStyle(
                   color: Colors.white,
                   fontFamily: "Arial",
+                  fontSize: 18
                 ),
                 decoration: InputDecoration.collapsed(hintText: "enter text"),
                 onChanged: (newIdentifier) {
