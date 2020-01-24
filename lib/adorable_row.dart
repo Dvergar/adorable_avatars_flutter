@@ -23,21 +23,40 @@ class _AdorableRowState extends State<AdorableRow> {
       ),
       height: 120,
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        // crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
             color: Color(0xffE14283),
             width: 10,
           ),
+          // Expanded(
+          //   child: Padding(
+          //     padding: const EdgeInsets.only(top:21.0),
+          //     child: ListTile(
+          //       title: Text(widget.title, style: TextStyle(color:Color(0xff8A97A3),  fontSize: 15, fontFamily: "Proxima"),),
+          //       subtitle: widget.child,
+          //     ),
+          //   ),
+          // ),
+
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(top:21.0),
-              child: ListTile(
-                title: Text(widget.title, style: TextStyle(color:Color(0xff8A97A3),  fontSize: 15, fontFamily: "Proxima"),),
-                subtitle: widget.child,
-              ),
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(14,25,14,14),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  widget.title,
+                  style: TextStyle(
+                        color: Color(0xff8A97A3),
+                        fontSize: 15,
+                        fontFamily: "Proxima"),
+                ),
+                Expanded(child: widget.child)
+              ],
             ),
-          ),
+                      ),
+          )
         ],
       ),
     );

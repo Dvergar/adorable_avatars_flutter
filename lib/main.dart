@@ -75,16 +75,16 @@ class _MyHomePageState extends State<MyHomePage> {
             AdorableRow(
               title: "IDENTIFIER",
               child: TextField(
-                controller: identifierController,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontFamily: "Arial",
+                  controller: identifierController,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: "Arial",
+                  ),
+                  decoration: InputDecoration.collapsed(hintText: "enter text"),
+                  onChanged: (newIdentifier) {
+                    avatarBloc.updateIdentifier(newIdentifier);
+                  },
                 ),
-                decoration: InputDecoration(hintText: "enter text"),
-                onChanged: (newIdentifier) {
-                  avatarBloc.updateIdentifier(newIdentifier);
-                },
-              ),
             ),
             AdorableRow(
               title: "SIZE",
