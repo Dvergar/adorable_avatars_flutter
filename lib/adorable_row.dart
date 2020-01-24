@@ -15,8 +15,8 @@ class _AdorableRowState extends State<AdorableRow> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        color: Color(0xff2D4359),
+      decoration: BoxDecoration(
+        color: Color(0xff2D4359).withOpacity(0.9),
         border: Border(
           bottom: BorderSide(width: 1.0, color: Color(0xff385F71)),
         ),
