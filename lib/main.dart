@@ -53,22 +53,25 @@ class _MyHomePageState extends State<MyHomePage> {
             fit: BoxFit.cover,
           ),
         ),
-        padding: const EdgeInsets.symmetric(horizontal: 15.0),
+        padding: const EdgeInsets.symmetric(horizontal: 18.0),
         child: ListView(
           children: <Widget>[
-            StreamBuilder(
-              stream: avatarBloc.stream,
-              initialData:
-                  'https://api.adorable.io/avatars/123/abott@adorable.png',
-              builder: (BuildContext context, AsyncSnapshot snapshot) {
-                if (!snapshot.hasData) return Text("nope");
-                return FadeInImage.memoryNetwork(
-                  height: 300,
-                  width: 300,
-                  placeholder: kTransparentImage,
-                  image: snapshot.data,
-                );
-              },
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              child: StreamBuilder(
+                stream: avatarBloc.stream,
+                initialData:
+                    'https://api.adorable.io/avatars/123/abott@adorable.png',
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  if (!snapshot.hasData) return Text("nope");
+                  return FadeInImage.memoryNetwork(
+                    height: 300,
+                    width: 300,
+                    placeholder: kTransparentImage,
+                    image: snapshot.data,
+                  );
+                },
+              ),
             ),
             AdorableRow(
               title: "IDENTIFIER",
