@@ -45,65 +45,85 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Column(
-        // mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          StreamBuilder(
-            stream: avatarBloc.stream,
-            initialData:
-                'https://api.adorable.io/avatars/123/abott@adorable.png',
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
-              if (!snapshot.hasData) return Text("nope");
-              return FadeInImage.memoryNetwork(
-                height: 300,
-                width: 300,
-                placeholder: kTransparentImage,
-                image: snapshot.data,
-              );
-            },
-          ),
-          AdorableRow(
-            title: "IDENTIFIER",
-            child: TextField(
-              controller: identifierController,
-              style: TextStyle(
-                color: Colors.white,
-                fontFamily: "Arial",
-              ),
-              decoration: InputDecoration(hintText: "enter text"),
-              onChanged: (newIdentifier) {
-                avatarBloc.updateIdentifier(newIdentifier);
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal:15.0),
+        child: Column(
+          // mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            StreamBuilder(
+              stream: avatarBloc.stream,
+              initialData:
+                  'https://api.adorable.io/avatars/123/abott@adorable.png',
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (!snapshot.hasData) return Text("nope");
+                return FadeInImage.memoryNetwork(
+                  height: 300,
+                  width: 300,
+                  placeholder: kTransparentImage,
+                  image: snapshot.data,
+                );
               },
             ),
-          ),
-          AdorableRow(
-            title: "SIZE",
-            child: SliderTheme(
-              data: SliderTheme.of(context).copyWith(
-                activeTrackColor: Color(0xff667382),
-                inactiveTrackColor: Color(0xff667382),
-                trackHeight: 7.0,
-                thumbColor: Colors.white,
-                thumbShape: RoundSliderThumbShape(enabledThumbRadius: 12.0),
-                // overlayColor: Colors.purple.withAlpha(32),
-                // overlayShape: RoundSliderOverlayShape(overlayRadius: 14.0),
-              ),
-              child: Slider(
-                value: size,
-                max: 300,
-                // activeColor: Colors.white,
-                // inactiveColor: Color(0xff667382),
-                onChanged: (newSize) {
-                  setState(() => size = newSize);
-                },
-                onChangeEnd: (newSize) {
-                  avatarBloc.updateSize(newSize.round());
+            AdorableRow(
+              title: "IDENTIFIER",
+              child: TextField(
+                controller: identifierController,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: "Arial",
+                ),
+                decoration: InputDecoration(hintText: "enter text"),
+                onChanged: (newIdentifier) {
+                  avatarBloc.updateIdentifier(newIdentifier);
                 },
               ),
             ),
-          )
-        ],
+            AdorableRow(
+              title: "SIZE",
+              child: SliderTheme(
+                data: SliderTheme.of(context).copyWith(
+                  activeTrackColor: Color(0xff667382),
+                  inactiveTrackColor: Color(0xff667382),
+                  trackHeight: 7.0,
+                  thumbColor: Colors.white,
+                  thumbShape: RoundSliderThumbShape(enabledThumbRadius: 12.0),
+                  trackShape: CustomTrackShape(),
+                  // overlayColor: Colors.purple.withAlpha(32),
+                  // overlayShape: RoundSliderOverlayShape(overlayRadius: 14.0),
+                ),
+                child: Slider(
+                  value: size,
+                  max: 300,
+                  // activeColor: Colors.white,
+                  // inactiveColor: Color(0xff667382),
+                  onChanged: (newSize) {
+                    setState(() => size = newSize);
+                  },
+                  onChangeEnd: (newSize) {
+                    avatarBloc.updateSize(newSize.round());
+                  },
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
+  }
+}
+
+class CustomTrackShape extends RoundedRectSliderTrackShape {
+  Rect getPreferredRect({
+    @required RenderBox parentBox,
+    Offset offset = Offset.zero,
+    @required SliderThemeData sliderTheme,
+    bool isEnabled = false,
+    bool isDiscrete = false,
+  }) {
+    final double trackHeight = sliderTheme.trackHeight;
+    final double trackLeft = offset.dx;
+    final double trackTop = offset.dy + (parentBox.size.height - trackHeight) / 2;
+    final double trackWidth = parentBox.size.width;
+    return Rect.fromLTWH(trackLeft, trackTop, trackWidth, trackHeight);
   }
 }
