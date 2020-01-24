@@ -12,10 +12,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Adorable avatars',
       theme: ThemeData(
-        fontFamily: "Proxima",
-        primarySwatch: Colors.blue,
-        canvasColor: Color(0xffc98bad)
-      ),
+          fontFamily: "Proxima",
+          primarySwatch: Colors.blue,
+          canvasColor: Color(0xffc98bad)),
       home: MyHomePage(title: 'Adorable avatars'),
     );
   }
@@ -34,7 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
   double size = 285;
   TextEditingController identifierController;
 
- @override
+  @override
   void initState() {
     super.initState();
     identifierController = new TextEditingController(text: 'abott@adorable.io');
@@ -63,12 +62,14 @@ class _MyHomePageState extends State<MyHomePage> {
               );
             },
           ),
-          
           AdorableRow(
             title: "IDENTIFIER",
             child: TextField(
               controller: identifierController,
-              style: TextStyle(color: Colors.white, fontFamily: "Arial",),
+              style: TextStyle(
+                color: Colors.white,
+                fontFamily: "Arial",
+              ),
               decoration: InputDecoration(hintText: "enter text"),
               onChanged: (newIdentifier) {
                 avatarBloc.updateIdentifier(newIdentifier);
@@ -77,17 +78,28 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           AdorableRow(
             title: "SIZE",
-            child: Slider(
-              value: size,
-              max: 300,
-              activeColor: Colors.white,
-              inactiveColor: Color(0xff667382),
-              onChanged: (newSize) {
-                setState(() => size = newSize);
-              },
-              onChangeEnd: (newSize) {
-                avatarBloc.updateSize(newSize.round());
-              },
+            child: SliderTheme(
+              data: SliderTheme.of(context).copyWith(
+                activeTrackColor: Color(0xff667382),
+                inactiveTrackColor: Color(0xff667382),
+                trackHeight: 7.0,
+                thumbColor: Colors.white,
+                thumbShape: RoundSliderThumbShape(enabledThumbRadius: 12.0),
+                // overlayColor: Colors.purple.withAlpha(32),
+                // overlayShape: RoundSliderOverlayShape(overlayRadius: 14.0),
+              ),
+              child: Slider(
+                value: size,
+                max: 300,
+                // activeColor: Colors.white,
+                // inactiveColor: Color(0xff667382),
+                onChanged: (newSize) {
+                  setState(() => size = newSize);
+                },
+                onChangeEnd: (newSize) {
+                  avatarBloc.updateSize(newSize.round());
+                },
+              ),
             ),
           )
         ],
