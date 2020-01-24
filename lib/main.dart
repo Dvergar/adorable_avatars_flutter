@@ -111,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             SizedBox(height: 20),
             IntrinsicHeight(
-                          child: Row(
+              child: Row(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   Flexible(
@@ -122,7 +122,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: StreamBuilder(
                         stream: avatarBloc.stream,
                         initialData: "ok",
-                        builder: (BuildContext context, AsyncSnapshot snapshot) {
+                        builder:
+                            (BuildContext context, AsyncSnapshot snapshot) {
                           if (!snapshot.hasData) return Text("Loading");
                           return SelectableText.rich(TextSpan(
                               style: TextStyle(fontFamily: 'Source Code Pro'),
@@ -147,13 +148,15 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Material(
                         color: Color(0xff6ED8D6),
                         child: Builder(
-                        builder: (context) =>
-                                                   IconButton(
+                          builder: (context) => IconButton(
                             icon: Icon(Icons.content_copy),
                             tooltip: 'Copy to clipboard',
                             onPressed: () {
-                              Clipboard.setData(new ClipboardData(text: "coucou"));
-                              Scaffold.of(context).showSnackBar(SnackBar(content: new Text("Link copied to clipboard"))); 
+                              Clipboard.setData(
+                                  new ClipboardData(text: "coucou"));
+                              Scaffold.of(context).showSnackBar(SnackBar(
+                                  content:
+                                      new Text("Link copied to clipboard")));
                             },
                           ),
                         ),
@@ -162,6 +165,19 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ],
               ),
+            ),
+            SizedBox(height: 17),
+            FlatButton(
+              color: Color(0xffE14283),
+              textColor: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: Text(
+                  "Download avatar",
+                  style: TextStyle(fontSize: 18),
+                ),
+              ),
+              onPressed: () {},
             )
           ],
         ),
