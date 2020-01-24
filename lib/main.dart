@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Adorable avatars',
       theme: ThemeData(
+        fontFamily: "Proxima",
         primarySwatch: Colors.blue,
         canvasColor: Color(0xffc98bad)
       ),
@@ -67,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
             title: "IDENTIFIER",
             child: TextField(
               controller: identifierController,
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.white, fontFamily: "Arial",),
               decoration: InputDecoration(hintText: "enter text"),
               onChanged: (newIdentifier) {
                 avatarBloc.updateIdentifier(newIdentifier);

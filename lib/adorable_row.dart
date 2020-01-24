@@ -31,7 +31,7 @@ class _AdorableRowState extends State<AdorableRow> {
           ),
           Expanded(
             child: ListTile(
-              title: Text(widget.title, style: TextStyle(color:Color(0xff8A97A3)),),
+              title: Text(widget.title, style: TextStyle(color:Color(0xff8A97A3),  fontSize: 15, fontFamily: "Proxima"),),
               subtitle: widget.child,
             ),
           ),
