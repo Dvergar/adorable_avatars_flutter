@@ -5,3 +5,5 @@
 A flutter project based on the Adorable avatars generator.
 
 http://avatars.adorable.io
+
+License MIT : https://raw.githubusercontent.com/adorableio/adorable-avatars/master/LICENSE 
