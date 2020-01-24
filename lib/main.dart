@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           fontFamily: "Proxima",
           primarySwatch: Colors.blue,
+          
           canvasColor: Color(0xffc98bad)),
       home: MyHomePage(title: 'Adorable avatars'),
     );
@@ -45,7 +46,13 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Padding(
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("images/demo-bg.jpg"),
+            fit: BoxFit.cover,
+          ),
+        ),
         padding: const EdgeInsets.symmetric(horizontal:15.0),
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.center,
