@@ -80,6 +80,8 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Slider(
               value: size,
               max: 300,
+              activeColor: Colors.white,
+              inactiveColor: Color(0xff667382),
               onChanged: (newSize) {
                 setState(() => size = newSize);
               },
