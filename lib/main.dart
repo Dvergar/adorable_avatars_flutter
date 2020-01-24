@@ -1,5 +1,6 @@
 import 'package:adorable_avatars_flutter/adorable_row.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'avatar_bloc.dart';
 
@@ -154,9 +155,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           icon: Icon(Icons.content_copy),
                           tooltip: 'Copy to clipboard',
                           onPressed: () {
-                            setState(() {
-                              // _volume += 10;
-                            });
+                            Clipboard.setData(new ClipboardData(text: "coucou"));
                           },
                         ),
                       ),
