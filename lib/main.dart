@@ -14,7 +14,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           fontFamily: "Proxima",
           primarySwatch: Colors.blue,
-          
           canvasColor: Color(0xffc98bad)),
       home: MyHomePage(title: 'Adorable avatars'),
     );
@@ -54,9 +53,8 @@ class _MyHomePageState extends State<MyHomePage> {
             fit: BoxFit.cover,
           ),
         ),
-        padding: const EdgeInsets.symmetric(horizontal:15.0),
+        padding: const EdgeInsets.symmetric(horizontal: 15.0),
         child: ListView(
-          // mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             StreamBuilder(
               stream: avatarBloc.stream,
@@ -75,16 +73,16 @@ class _MyHomePageState extends State<MyHomePage> {
             AdorableRow(
               title: "IDENTIFIER",
               child: TextField(
-                  controller: identifierController,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontFamily: "Arial",
-                  ),
-                  decoration: InputDecoration.collapsed(hintText: "enter text"),
-                  onChanged: (newIdentifier) {
-                    avatarBloc.updateIdentifier(newIdentifier);
-                  },
+                controller: identifierController,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: "Arial",
                 ),
+                decoration: InputDecoration.collapsed(hintText: "enter text"),
+                onChanged: (newIdentifier) {
+                  avatarBloc.updateIdentifier(newIdentifier);
+                },
+              ),
             ),
             AdorableRow(
               title: "SIZE",
@@ -96,14 +94,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   thumbColor: Colors.white,
                   thumbShape: RoundSliderThumbShape(enabledThumbRadius: 12.0),
                   trackShape: CustomTrackShape(),
-                  // overlayColor: Colors.purple.withAlpha(32),
-                  // overlayShape: RoundSliderOverlayShape(overlayRadius: 14.0),
                 ),
                 child: Slider(
                   value: size,
                   max: 300,
-                  // activeColor: Colors.white,
-                  // inactiveColor: Color(0xff667382),
                   onChanged: (newSize) {
                     setState(() => size = newSize);
                   },
@@ -130,7 +124,8 @@ class CustomTrackShape extends RoundedRectSliderTrackShape {
   }) {
     final double trackHeight = sliderTheme.trackHeight;
     final double trackLeft = offset.dx;
-    final double trackTop = offset.dy + (parentBox.size.height - trackHeight) / 2;
+    final double trackTop =
+        offset.dy + (parentBox.size.height - trackHeight) / 2;
     final double trackWidth = parentBox.size.width;
     return Rect.fromLTWH(trackLeft, trackTop, trackWidth, trackHeight);
   }
