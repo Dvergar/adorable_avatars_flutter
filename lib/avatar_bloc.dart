@@ -12,8 +12,7 @@ class AvatarBloc {
 
   void updateUrl() {
     this.url = 'https://api.adorable.io/avatars/$size/$identifier.png';
-    urlController.sink
-        .add(url);
+    urlController.sink.add(url);
   }
 
   void updateSize(int newSize) {

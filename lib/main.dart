@@ -15,10 +15,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Adorable Avatars',
       theme: ThemeData(
-          fontFamily: "Proxima",
-          primaryColor: BlueGrey,
-          primarySwatch: Colors.blueGrey,
-          ),
+        fontFamily: "Proxima",
+        primaryColor: BlueGrey,
+        primarySwatch: Colors.blueGrey,
+      ),
       home: MyHomePage(title: 'Adorable Avatars'),
     );
   }
@@ -83,7 +83,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 controller: identifierController,
                 style: TextStyle(
                     color: Colors.white, fontFamily: "Arial", fontSize: 18),
-                decoration: InputDecoration.collapsed(hintText: "enter text", hintStyle: TextStyle(color: Colors.blueGrey)),
+                decoration: InputDecoration.collapsed(
+                    hintText: "enter text",
+                    hintStyle: TextStyle(color: Colors.blueGrey)),
                 onChanged: (newIdentifier) {
                   avatarBloc.updateIdentifier(newIdentifier);
                 },
@@ -103,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 child: Slider(
                   value: size.toDouble(),
-                  min:40,
+                  min: 40,
                   max: 285,
                   onChanged: (newSize) {
                     setState(() => size = newSize.round());
@@ -160,7 +162,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               Clipboard.setData(
                                   new ClipboardData(text: avatarBloc.url));
                               Scaffold.of(context).showSnackBar(SnackBar(
-                                backgroundColor:  BlueGrey,
+                                  backgroundColor: BlueGrey,
                                   content:
                                       new Text("Link copied to clipboard")));
                             },
@@ -186,8 +188,8 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () async {
                 try {
                   // Saved with this method.
-                  var imageId = await ImageDownloader.downloadImage(
-                      avatarBloc.url);
+                  var imageId =
+                      await ImageDownloader.downloadImage(avatarBloc.url);
                   if (imageId == null) {
                     return;
                   }
