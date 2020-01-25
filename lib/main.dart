@@ -158,7 +158,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             tooltip: 'Copy to clipboard',
                             onPressed: () {
                               Clipboard.setData(
-                                  new ClipboardData(text: "coucou"));
+                                  new ClipboardData(text: avatarBloc.url));
                               Scaffold.of(context).showSnackBar(SnackBar(
                                 backgroundColor:  BlueGrey,
                                   content:
