@@ -7,3 +7,6 @@ A flutter project based on the Adorable Avatars generator.
 http://avatars.adorable.io
 
 License [MIT](https://raw.githubusercontent.com/adorableio/adorable-avatars/master/)
+
+## Screenshot
+<img src="https://raw.githubusercontent.com/Dvergar/adorable_avatars_flutter/master/screenshot.png" width="400">
