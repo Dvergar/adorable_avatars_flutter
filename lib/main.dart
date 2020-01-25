@@ -7,16 +7,19 @@ import 'avatar_bloc.dart';
 
 void main() => runApp(MyApp());
 
+const BlueGrey = Color(0xff2D4359);
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Adorable avatars',
+      title: 'Adorable Avatars',
       theme: ThemeData(
           fontFamily: "Proxima",
-          primarySwatch: Colors.blue,
-          canvasColor: Color(0xffc98bad)),
-      home: MyHomePage(title: 'Adorable avatars'),
+          primaryColor: BlueGrey,
+          primarySwatch: Colors.blueGrey,
+          ),
+      home: MyHomePage(title: 'Adorable Avatars'),
     );
   }
 }
@@ -80,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 controller: identifierController,
                 style: TextStyle(
                     color: Colors.white, fontFamily: "Arial", fontSize: 18),
-                decoration: InputDecoration.collapsed(hintText: "enter text"),
+                decoration: InputDecoration.collapsed(hintText: "enter text", hintStyle: TextStyle(color: Colors.blueGrey)),
                 onChanged: (newIdentifier) {
                   avatarBloc.updateIdentifier(newIdentifier);
                 },
@@ -157,6 +160,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               Clipboard.setData(
                                   new ClipboardData(text: "coucou"));
                               Scaffold.of(context).showSnackBar(SnackBar(
+                                backgroundColor:  BlueGrey,
                                   content:
                                       new Text("Link copied to clipboard")));
                             },
@@ -168,7 +172,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            SizedBox(height: 17),
+            SizedBox(height: 20),
             FlatButton(
               color: Color(0xffE14283),
               textColor: Colors.white,
@@ -191,7 +195,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   print(error);
                 }
               },
-            )
+            ),
+            SizedBox(height: 20)
           ],
         ),
       ),
