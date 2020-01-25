@@ -62,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: StreamBuilder(
                 stream: avatarBloc.stream,
                 initialData:
-                    'https://api.adorable.io/avatars/123/abott@adorable.png',
+                    'https://api.adorable.io/avatars/285/abott@adorable.png',
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (!snapshot.hasData) return Text("nope");
                   return FadeInImage.memoryNetwork(
@@ -100,7 +100,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 child: Slider(
                   value: size.toDouble(),
-                  max: 300,
+                  min:40,
+                  max: 285,
                   onChanged: (newSize) {
                     setState(() => size = newSize.round());
                   },
