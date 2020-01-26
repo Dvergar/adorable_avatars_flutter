@@ -11,7 +11,7 @@ description: An avatar generator.
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 0.0.1+1
+version: 1.0.0+1
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -25,6 +25,15 @@ dependencies:
   cupertino_icons: ^0.1.2
   transparent_image:
   image_downloader:
+  flutter_launcher_icons: "^0.7.4"
+
+
+flutter_icons:
+  android: "launcher_icon" 
+  ios: false
+  image_path: "icon/icon.png"
+  adaptive_icon_background: "#F6BE5D"
+
 
 dev_dependencies:
   flutter_test:

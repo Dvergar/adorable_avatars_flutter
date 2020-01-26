@@ -1,4 +1,4 @@
-package com.example.adorable_avatars_flutter
+package app.adorableavatars
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
