@@ -36,6 +36,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int size = 285;
   TextEditingController identifierController;
+  int currentSelectedIndex;
 
   @override
   void initState() {
@@ -79,6 +80,12 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             AdorableRow(
               title: "IDENTIFIER",
+              selected: currentSelectedIndex == 1,
+              onSelect: () {
+                setState(() {
+                  currentSelectedIndex = 1;
+                });
+              },
               child: TextField(
                 controller: identifierController,
                 style: TextStyle(
@@ -93,6 +100,12 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             AdorableRow(
               title: 'SIZE',
+              selected: currentSelectedIndex == 2,
+              onSelect: () {
+                setState(() {
+                  currentSelectedIndex = 2;
+                });
+              },
               title2: size.toString(),
               child: SliderTheme(
                 data: SliderTheme.of(context).copyWith(
