@@ -68,12 +68,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 initialData:
                     'https://api.adorable.io/avatars/285/abott@adorable.png',
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  if (!snapshot.hasData) return Text("nope");
-                  return FadeInImage.memoryNetwork(
-                    height: 300,
-                    width: 300,
-                    placeholder: kTransparentImage,
-                    image: snapshot.data,
+                  if (!snapshot.hasData) return Container();
+                  return Stack(
+                    alignment: Alignment.center,
+                    children: <Widget>[
+                      CircularProgressIndicator(
+                          valueColor:
+                              AlwaysStoppedAnimation<Color>(Color(0xffE14283))),
+                      FadeInImage.memoryNetwork(
+                        height: 300,
+                        width: 300,
+                        placeholder: kTransparentImage,
+                        image: snapshot.data,
+                      ),
+                    ],
                   );
                 },
               ),
