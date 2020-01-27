@@ -23,8 +23,10 @@ class AdorableRow extends StatefulWidget {
 class _AdorableRowState extends State<AdorableRow> {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: widget.onSelect,
+    return Listener(
+      onPointerDown: (_) {
+        widget.onSelect();
+      },
       child: Container(
         decoration: BoxDecoration(
           color: Color(0xff2D4359).withOpacity(0.9),
@@ -35,9 +37,13 @@ class _AdorableRowState extends State<AdorableRow> {
         height: 120,
         child: Row(
           children: <Widget>[
-            Container(
-              color: widget.selected ? Color(0xffE14283) : Colors.green,
-              width: 6,
+            AnimatedOpacity(
+              opacity: widget.selected ? 1.0 : 0.0,
+              duration: Duration(milliseconds: 100),
+              child: Container(
+                color: Color(0xffE14283),
+                width: 6,
+              ),
             ),
             Expanded(
               child: Padding(
