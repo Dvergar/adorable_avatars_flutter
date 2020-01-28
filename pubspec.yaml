@@ -26,6 +26,7 @@ dependencies:
   transparent_image:
   image_downloader:
   flutter_launcher_icons: "^0.7.4"
+  url_launcher:
 
 
 flutter_icons:

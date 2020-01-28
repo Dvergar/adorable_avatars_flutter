@@ -1,8 +1,11 @@
 import 'package:adorable_avatars_flutter/adorable_row.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_downloader/image_downloader.dart';
 import 'package:transparent_image/transparent_image.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter/foundation.dart' show defaultTargetPlatform;
 import 'avatar_bloc.dart';
 
 void main() => runApp(MyApp());
@@ -46,10 +49,73 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData themeData = Theme.of(context);
+    final TextStyle aboutTextStyle = themeData.textTheme.body1;
+    final TextStyle linkStyle =
+        themeData.textTheme.body1.copyWith(color: themeData.accentColor);
     return Scaffold(
       resizeToAvoidBottomPadding: true,
       appBar: AppBar(
         title: Text(widget.title),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.help_outline),
+            onPressed: () {
+              // showGalleryAboutDialog(context);
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  // return object of type Dialog
+                  return SimpleDialog(
+                    title: new Text("Credits"),
+                    contentPadding: EdgeInsets.all(20),
+                    children: <Widget>[
+                      RichText(
+                        text: TextSpan(
+                          children: <TextSpan>[
+                            TextSpan(
+                                style: aboutTextStyle,
+                                text:
+                                    'This generator is based on the Adorable Avatars service '),
+                            _LinkTextSpan(
+                              style: linkStyle,
+                              url: 'http://avatars.adorable.io',
+                            ),
+                            TextSpan(
+                              style: aboutTextStyle,
+                              text:
+                                  '.\n\nThis app is open-source and available at ',
+                            ),
+                            _LinkTextSpan(
+                              style: linkStyle,
+                              url:
+                                  'https://github.com/Dvergar/adorable_avatars_flutter',
+                              text: 'the app github repo',
+                            ),
+                            TextSpan(
+                              style: aboutTextStyle,
+                              text: '.\n\n'
+                                  'Art has been done by ',
+                            ),
+                            _LinkTextSpan(
+                              style: linkStyle,
+                              url: 'https://dribbble.com/missingdink',
+                              text: 'Kelly Rauwerdink',
+                            ),
+                            TextSpan(
+                              style: aboutTextStyle,
+                              text: '.',
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
+          ),
+        ],
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -242,4 +308,75 @@ class CustomTrackShape extends RoundedRectSliderTrackShape {
     final double trackWidth = parentBox.size.width;
     return Rect.fromLTWH(trackLeft, trackTop, trackWidth, trackHeight);
   }
+}
+
+launchURL(String url) async {
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
+
+class _LinkTextSpan extends TextSpan {
+  _LinkTextSpan({TextStyle style, String url, String text})
+      : super(
+            style: style,
+            text: text ?? url,
+            recognizer: TapGestureRecognizer()
+              ..onTap = () {
+                launchURL(url);
+              });
+}
+
+void showGalleryAboutDialog(BuildContext context) {
+  final ThemeData themeData = Theme.of(context);
+  final TextStyle aboutTextStyle = themeData.textTheme.body1;
+  final TextStyle linkStyle =
+      themeData.textTheme.body1.copyWith(color: themeData.accentColor);
+
+  showAboutDialog(
+    context: context,
+    applicationVersion: 'The creature generator',
+    applicationIcon: const FlutterLogo(),
+    applicationLegalese: '',
+    children: <Widget>[
+      Padding(
+        padding: const EdgeInsets.only(top: 24.0),
+        child: RichText(
+          text: TextSpan(
+            children: <TextSpan>[
+              TextSpan(
+                style: aboutTextStyle,
+                text: 'This generator is based on the Adorable Avatars service '
+                    'build high-performance, high-fidelity, mobile apps for '
+                    '${defaultTargetPlatform == TargetPlatform.iOS ? 'multiple platforms' : 'iOS and Android'} '
+                    'from a single codebase. This design lab is a playground '
+                    "and showcase of Flutter's many widgets, behaviors, "
+                    'animations, layouts, and more. Learn more about Flutter at ',
+              ),
+              _LinkTextSpan(
+                style: linkStyle,
+                url: 'https://flutter.dev',
+              ),
+              TextSpan(
+                style: aboutTextStyle,
+                text:
+                    '.\n\nTo see the source code for this app, please visit the ',
+              ),
+              _LinkTextSpan(
+                style: linkStyle,
+                url: 'https://goo.gl/iv1p4G',
+                text: 'flutter github repo',
+              ),
+              TextSpan(
+                style: aboutTextStyle,
+                text: '.',
+              ),
+            ],
+          ),
+        ),
+      ),
+    ],
+  );
 }
