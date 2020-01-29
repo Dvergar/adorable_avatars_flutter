@@ -39,7 +39,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int size = 285;
   TextEditingController identifierController;
-  int currentSelectedIndex;
+  int currentSelectedIndex = 1;
 
   @override
   void initState() {
@@ -49,7 +49,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
- 
     return Scaffold(
       resizeToAvoidBottomPadding: true,
       appBar: AppBar(
@@ -261,5 +260,3 @@ class CustomTrackShape extends RoundedRectSliderTrackShape {
     return Rect.fromLTWH(trackLeft, trackTop, trackWidth, trackHeight);
   }
 }
-
-
