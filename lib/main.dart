@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_downloader/image_downloader.dart';
 import 'package:transparent_image/transparent_image.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import 'adorable_row.dart';
 import 'avatar_bloc.dart';
+import 'credits.dart';
 
 void main() => runApp(MyApp());
 
@@ -49,10 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData themeData = Theme.of(context);
-    final TextStyle aboutTextStyle = themeData.textTheme.body1;
-    final TextStyle linkStyle =
-        themeData.textTheme.body1.copyWith(color: themeData.accentColor);
+ 
     return Scaffold(
       resizeToAvoidBottomPadding: true,
       appBar: AppBar(
@@ -64,51 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return SimpleDialog(
-                    title: new Text("Credits"),
-                    contentPadding: EdgeInsets.all(20),
-                    children: <Widget>[
-                      RichText(
-                        text: TextSpan(
-                          children: <TextSpan>[
-                            TextSpan(
-                                style: aboutTextStyle,
-                                text:
-                                    'This avatar generator is based on the Adorable Avatars service '),
-                            _LinkTextSpan(
-                              style: linkStyle,
-                              url: 'http://avatars.adorable.io',
-                            ),
-                            TextSpan(
-                              style: aboutTextStyle,
-                              text:
-                                  '.\n\nThis app is open-source and available at ',
-                            ),
-                            _LinkTextSpan(
-                              style: linkStyle,
-                              url:
-                                  'https://github.com/Dvergar/adorable_avatars_flutter',
-                              text: 'the app github repo',
-                            ),
-                            TextSpan(
-                              style: aboutTextStyle,
-                              text: '.\n\n'
-                                  'Art has been done by ',
-                            ),
-                            _LinkTextSpan(
-                              style: linkStyle,
-                              url: 'https://dribbble.com/missingdink',
-                              text: 'Kelly Rauwerdink',
-                            ),
-                            TextSpan(
-                              style: aboutTextStyle,
-                              text: '.',
-                            )
-                          ],
-                        ),
-                      ),
-                    ],
-                  );
+                  return Credits();
                 },
               );
             },
@@ -309,23 +262,4 @@ class CustomTrackShape extends RoundedRectSliderTrackShape {
   }
 }
 
-// URL LAUNCHER
-launchURL(String url) async {
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
-  }
-}
 
-// HELPER FOR LINKS IN TEXTSPANS
-class _LinkTextSpan extends TextSpan {
-  _LinkTextSpan({TextStyle style, String url, String text})
-      : super(
-            style: style,
-            text: text ?? url,
-            recognizer: TapGestureRecognizer()
-              ..onTap = () {
-                launchURL(url);
-              });
-}
