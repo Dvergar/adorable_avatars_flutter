@@ -6,9 +6,9 @@ class AvatarBloc {
   String url = "";
 
   final urlController =
-      StreamController.broadcast(); // create a StreamController
+      StreamController.broadcast();
 
-  Stream get stream => urlController.stream; // create a getter for our stream
+  Stream get stream => urlController.stream;
 
   void updateUrl() {
     this.url = 'https://api.adorable.io/avatars/$size/$identifier.png';
@@ -26,7 +26,7 @@ class AvatarBloc {
   }
 
   void dispose() {
-    urlController.close(); // close our StreamController
+    urlController.close();
   }
 }
 
